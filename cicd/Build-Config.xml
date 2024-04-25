@@ -1,0 +1,25 @@
+kind: BuildConfig
+apiVersion: build.openshift.io/v1
+metadata:
+  name: nodejs-ex-git
+  namespace: jenkins
+  labels:
+    app: nodejs-ex-git
+spec:
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'nodejs-ex-git:latest'
+  strategy:
+    type: Source
+    sourceStrategy:
+      from:
+        kind: ImageStreamTag
+        namespace: openshift
+        name: 'nodejs:16-ubi8'
+  source:
+    type: Git
+    git:
+      uri: 'https://github.com/proeffico/nodejs-ex.git'
+    contextDir: /
+  
