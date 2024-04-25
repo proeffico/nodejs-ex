@@ -6,18 +6,20 @@ pipeline {
 		SONAR_PASSWORD = credentials('Sonar.Admin')
 	}
     	stages {
-    		
-		stage('SonarQube Analysis') {
-		    steps {
-			withSonarQubeEnv(installationName: 'SonarQube Scanner') {
-			    sh """/opt/sonarqube/bin/sonar-scanner \
-			    -D sonar.exclusions=vendor/**,storage/** \
-			    -D sonar.projectKey=OpenShiftNodeJS \
-			    -D sonar.sourceEncoding=UTF-8 \
-			    -Dsonar.host.url=http://sonarqube.proeffico.com \
-			    -Dsonar.login=$SONAR_PASSWORD"""
-			}
-		    }
+    		stage('SonarQube analysis') {
+    			environment {
+        			scannerHome = tool 'SonarQube Scanner' // the name you have given the Sonar Scanner (in Global Tool Configuration)
+    			}
+    			steps {
+        			withSonarQubeEnv(installationName: 'SonarQube Scanner') {
+            				sh """${scannerHome}/bin/sonar-scanner -X \
+    						-Dsonar.projectKey=OpenShiftNodeJS \
+    						-Dsonar.sourceEncoding=UTF-8 \
+    						-Dsonar.host.url=http://sonarqube.proeffico.com \
+    						-Dsonar.login=$SONAR_PASSWORD
+						"""
+			        }
+    			}
 		}
 
 		stage("Quality Gate") {
