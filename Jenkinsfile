@@ -15,7 +15,7 @@ pipeline {
             				sh """${scannerHome}/bin/sonar-scanner -X \
     						-Dsonar.projectKey=OpenShiftNodeJS \
     						-Dsonar.sourceEncoding=UTF-8 \
-    						-Dsonar.host.url=http://sonarqube.proeffico.com \
+    						-Dsonar.host.url=http://192.168.29.171:9000 \
     						-Dsonar.login=$SONAR_PASSWORD
 						"""
 			        }
