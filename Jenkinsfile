@@ -2,12 +2,11 @@ pipeline {
 	agent {
 		label 'nodejs'
 	}
+	environment {
+		SONAR_PASSWORD = credentials('Sonar.Admin')
+	}
     	stages {
-    		stage('Download Repo') {
-		    steps {	script {
-				git(url: 'https://interface/.git', branch: 'master', credentialsId: 'MyPwd')
-			}}
-		}
+    		
 		stage('SonarQube Analysis') {
 		    steps {
 			withSonarQubeEnv(installationName: 'SonarQube Scanner') {
@@ -16,7 +15,7 @@ pipeline {
 			    -D sonar.projectKey=OpenShiftNodeJS \
 			    -D sonar.sourceEncoding=UTF-8 \
 			    -Dsonar.host.url=http://sonarqube.proeffico.com \
-			    -Dsonar.login=sqa_769eb0ed2dd20f00c4e40f8d7c0bebb1e1b699dc"""
+			    -Dsonar.login=$SONAR_PASSWORD"""
 			}
 		    }
 		}
