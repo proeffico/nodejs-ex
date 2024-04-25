@@ -31,7 +31,7 @@ pipeline {
 		}
 		stage('Install Package') {
 			steps {
-				sh "npm install"
+				sh "oc apply -f cicd/build-config.xml"
 			}
 		}
 		stage('Build') {
