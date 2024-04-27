@@ -30,7 +30,7 @@ pipeline {
 		}
 		stage('Install Package') {
 			steps {
-				sh "oc apply -f cicd/build-config.xml"
+				sh "oc apply -f cicd/Build-Config.xml"
 			}
 		}
 		stage('Build') {
