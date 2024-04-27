@@ -28,11 +28,7 @@ pipeline {
 		      }
 		    }
 		}
-		stage('Install Package') {
-			steps {
-				sh "oc apply -f cicd/Build-Config.xml"
-			}
-		}
+		
 		stage('Build') {
 			steps {
 				echo "Building image..."
