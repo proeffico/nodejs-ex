@@ -8,10 +8,10 @@ pipeline {
     	stages {
     		stage('SonarQube analysis') {
     			environment {
-        			scannerHome = tool 'SonarQube.admin' // the name you have given the Sonar Scanner (in Global Tool Configuration)
+        			scannerHome = tool 'SonarQube Scanner' // the name you have given the Sonar Scanner (in Global Tool Configuration)
     			}
     			steps {
-        			withSonarQubeEnv(installationName: 'SonarQube.Admin') {
+        			withSonarQubeEnv(installationName: 'SonarQube Scanner') {
             				sh """${scannerHome}/bin/sonar-scanner -X \
     						-Dsonar.projectKey=OpenShiftNodeJS \
     						-Dsonar.sourceEncoding=UTF-8 \
