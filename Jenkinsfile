@@ -4,6 +4,17 @@ pipeline {
 	}
 	
     	stages {
+
+		stage('Install npm Dependencies') {
+                 steps {
+                      // Change to your project directory
+                      dir('my-node-app') {
+                      // Install npm dependencies
+                      sh 'npm install'
+                      }
+                   }
+               }
+
     		
 
 		stage('Build Image') {
