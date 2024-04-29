@@ -5,15 +5,7 @@ pipeline {
 	
     	stages {
 
-		stage('Install npm Dependencies') {
-                 steps {
-                      // Change to your project directory
-                      dir('my-node-app') {
-                      // Install npm dependencies
-                      sh 'npm install'
-                      }
-                   }
-               }
+		
 
     		
 
@@ -24,6 +16,17 @@ pipeline {
 				sh "oc start-build buildconfig/nodejs-ex-git"
 			}
 		}
+
+
+		stage('Install npm Dependencies') {
+                 steps {
+                      // Change to your project directory
+                      dir('my-node-app') {
+                      // Install npm dependencies
+                      sh 'npm install'
+                      }
+                   }
+               }
 
 		stage('Build') {
 			steps {
