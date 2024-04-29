@@ -10,7 +10,7 @@ pipeline {
 			steps {
 				echo "Building image..."
 				sh "oc apply -f cicd/Build-Config.xml"
-				sh "oc start-build buildconfig/${APP_NAME} --from-file=target/${APP_JAR}"
+				sh "oc start-build buildconfig/nodejs-ex-git"
 			}
 		}
 
