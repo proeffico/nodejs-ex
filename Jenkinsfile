@@ -4,34 +4,20 @@ pipeline {
 	}
 	
     	stages {
+		stage('Install npm Dependencies') {
+                 steps {
+				echo "Installing Dependencies..."
+				sh "npm install"
+			}
+                   }
+               }
 
 		
-
-    		
-
 		stage('Build Image') {
 			steps {
 				echo "Building image..."
 				sh "oc apply -f cicd/Build-Config.xml"
 				sh "oc start-build buildconfig/nodejs-ex-git"
-			}
-		}
-
-
-		stage('Install npm Dependencies') {
-                 steps {
-                      // Change to your project directory
-                      dir('my-node-app') {
-                      // Install npm dependencies
-                      sh 'npm install'
-                      }
-                   }
-               }
-
-		stage('Build') {
-			steps {
-				echo "Building image..."
-				sh "npm start"
 			}
 		}
 	}
