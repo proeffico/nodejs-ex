@@ -1,15 +1,15 @@
 kind: BuildConfig
 apiVersion: build.openshift.io/v1
 metadata:
-  name: nodejs-ex-git
+  name: nodejs-ex
   namespace: jenkins
   labels:
-    app: nodejs-ex-git
+    app: nodejs-ex
 spec:
   output:
     to:
       kind: ImageStreamTag
-      name: 'nodejs-ex-git:latest'
+      name: 'nodejs-ex:latest'
   strategy:
     type: Source
     sourceStrategy:
