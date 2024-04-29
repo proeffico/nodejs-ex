@@ -4,14 +4,6 @@ pipeline {
 	}
 	
     	stages {
-		stage('Install npm Dependencies') {
-                 steps {
-				echo "Installing Dependencies..."
-				sh "npm install"
-			}
-                   }
-               }
-
 		
 		stage('Build Image') {
 			steps {
