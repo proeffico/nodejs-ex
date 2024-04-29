@@ -12,5 +12,12 @@ pipeline {
 				sh "oc start-build buildconfig/nodejs-ex"
 			}
 		}
+		stage('Deploy Service') {
+			steps {
+				echo "Deploying service..."
+				sh "oc apply -f cicd/Deployment.xml"
+			}
+		}
+
 	}
 }
