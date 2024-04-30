@@ -34,14 +34,20 @@ pipeline {
 				echo "Building image..."
 				sh "oc apply -f cicd/Build-Config.xml"
 				sh "oc start-build buildconfig/nodejs-ex"
+				timeout(time: 1, unit: 'HOURS')
 			}
 		}
-		stage('Deploy Service') {
-			steps {
-				echo "Deploying service..."
-				sh "oc apply -f cicd/Deployment.xml"
-			}
-		}
+		
+
+
+
+		
+		// stage('Deploy Service') {
+		// 	steps {
+		// 		echo "Deploying service..."
+		// 		sh "oc apply -f cicd/Deployment.xml"
+		// 	}
+		// }
 
 	}
 }
